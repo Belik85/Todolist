@@ -18,16 +18,6 @@ type TasksStateType = {
 
 function App() {
 
-    // let [tasks, setTasks] = useState<Array<TaskType>>(
-    //     [
-    //     {id: v1(), title: "HTML&CSS", isDone: true},
-    //     {id: v1(), title: "JS", isDone: true},
-    //     {id: v1(), title: "ReactJS", isDone: false},
-    //     {id: v1(), title: "Rest API", isDone: false},
-    //     {id: v1(), title: "GraphQL", isDone: false},
-    //     ]
-    // )
-
     let todoListID1 = v1()
     let todoListID2 = v1()
 
@@ -88,6 +78,13 @@ function App() {
 
     }
 
+    function removeTodoList(todoListID: string) {
+        setTodoLists(todoLists.filter(tl => tl.id !== todoListID))
+        delete tasks[todoListID]
+        setTasks({...tasks})
+    }
+
+
 return (
     <div className="App">
         {
@@ -112,6 +109,7 @@ return (
                         addTask={addTask}
                         changeTaskStatus={changeStatus}
                         filter={tl.filter}
+                        removeTodoList={removeTodoList}
                     />
                 )
             })
@@ -119,7 +117,7 @@ return (
 
 
      </div>
-  );
+  )
 
 }
 

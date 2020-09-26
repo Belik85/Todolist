@@ -34,15 +34,13 @@ export function Todolist(props: PropsType) {
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.currentTarget.value)
-    }
+        setError( null);
+        setTitle(e.currentTarget.value);
+    };
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
-        if (e.charCode === 13) {
-            addTask();
-        }
-    }
+        if (e.ctrlKey && e.key === 'Enter') { addTask()}}
 
     const onAllClickHandler = () => props.changeFilter("all", props.id);
     const onActiveClickHandler = () => props.changeFilter("active", props.id);

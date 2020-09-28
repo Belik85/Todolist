@@ -1,5 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
+import AddItemForm from "./AddItemForm";
 
 export type TaskType = {
     id: string
@@ -21,26 +22,30 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
 
-    let [title, setTitle] = useState("")
-    let [error, setError] = useState<string | null>(null)
-
-    let addTask = () => {
-        if (title.trim() !== "") {
-            props.addTask(title.trim(), props.id);
-            setTitle("");
-        } else {
-            setError("Title is required");
-        }
+    const addTask = (title: string) => {
+        props.addTask(title, props.id)
     }
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setError( null);
-        setTitle(e.currentTarget.value);
-    };
+    // let [title, setTitle] = useState("")
+    // let [error, setError] = useState<string | null>(null)
 
-    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
-        if (e.ctrlKey && e.key === 'Enter') { addTask()}}
+    // let addTask = () => {
+    //     if (title.trim() !== "") {
+    //         props.addTask(title.trim(), props.id);
+    //         setTitle("");
+    //     } else {
+    //         setError("Title is required");
+    //     }
+    // }
+
+    // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    //     setError( null);
+    //     setTitle(e.currentTarget.value);
+    // };
+
+    // const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    //     setError(null);
+    //     if (e.ctrlKey && e.key === 'Enter') { addTask()}}
 
     const onAllClickHandler = () => props.changeFilter("all", props.id);
     const onActiveClickHandler = () => props.changeFilter("active", props.id);
@@ -49,15 +54,16 @@ export function Todolist(props: PropsType) {
 
     return <div>
         <h3>{props.title}<button onClick={() => {props.removeTodoList(props.id)}}>X</button></h3>
-        <div>
-            <input value={title}
-                   onChange={onChangeHandler}
-                   onKeyPress={onKeyPressHandler}
-                   className={error ? "error" : ""}
-            />
-            <button onClick={addTask}>+</button>
-            {error && <div className="error-message">{error}</div>}
-        </div>
+        <AddItemForm addItem={ addTask }/>
+        {/*<div>*/}
+        {/*    <input value={title}*/}
+        {/*           onChange={onChangeHandler}*/}
+        {/*           onKeyPress={onKeyPressHandler}*/}
+        {/*           className={error ? "error" : ""}*/}
+        {/*    />*/}
+        {/*    <button onClick={addTask}>+</button>*/}
+        {/*    {error && <div className="error-message">{error}</div>}*/}
+        {/*</div>*/}
         <ul>
             {
                 props.tasks.map(t => {

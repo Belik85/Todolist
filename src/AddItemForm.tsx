@@ -1,17 +1,39 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 
-function AddItemForm() {
+type AddItemFormPropsType = {
+    addItem: (title: string) => void
+
+}
+
+
+function AddItemForm(props: AddItemFormPropsType) {
+
+    const addItem = props.addItem;
 
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
+
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setError( null);
         setTitle(e.currentTarget.value);
     };
 
+    const onAddTaskClick = () => {
+        if (title.trim()) {
+            addItem(title.trim());
+            setTitle("");
+        } else {
+            setError("Title is required");
+        }
+    }
+
+
+
+
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null);
-        if (e.ctrlKey && e.key === 'Enter') { addTask()}}
+        if (e.ctrlKey && e.key === 'Enter') { onAddTaskClick()}
+    }
 
     return (
            <div>
@@ -20,11 +42,11 @@ function AddItemForm() {
                       onKeyPress={onKeyPressHandler}
                       className={error ? "error" : ""}
                />
-               <button onClick={addTask}>+</button>
+               <button onClick={ onAddTaskClick }>+</button>
                {error && <div className="error-message">{error}</div>}
            </div>
        )
 
 };
 
-export default AddItemForm
+export default AddItemForm;

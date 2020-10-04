@@ -2,6 +2,8 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
+import {IconButton} from "@material-ui/core";
+import {Delete} from "@material-ui/icons";
 
 export type TaskType = {
     id: string
@@ -41,7 +43,7 @@ export function Todolist(props: PropsType) {
 
 
     const tasks = props.tasks.map(t => {
-        const onClickHandler = () => {
+        const removeTask = () => {
             props.removeTask(t.id, props.id)
         }
         const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +58,12 @@ export function Todolist(props: PropsType) {
             <input type="checkbox"
                    onChange={onChangeHandler}
                    checked={t.isDone}/>
-            <EditableSpan value={t.title} changeValue={changeTaskTitle}/>
-            <button onClick={onClickHandler}>x</button>
+            <EditableSpan value={t.title} changeValue={ changeTaskTitle }/>
+            <IconButton onClick={ removeTask }>
+               <Delete/>
+            </IconButton>
+
+            {/*<button onClick={removeTask}>X</button>*/}
         </li>
     })
 
@@ -67,10 +73,10 @@ export function Todolist(props: PropsType) {
         <div>
             <h3>
                 <EditableSpan value={props.title} changeValue={changeTodoListTitle}/>
-                <button onClick={() => {
-                    props.removeTodoList(props.id)
-                }}>X
-                </button>
+                <IconButton onClick={()=>{props.removeTodoList(props.id)}}>
+                    <Delete/>
+                </IconButton>
+                {/*<button onClick={() => {props.removeTodoList(props.id)}}>X</button>*/}
             </h3>
             <AddItemForm addItem={addTask}/>
             <ul>

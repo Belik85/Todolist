@@ -4,6 +4,9 @@ import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
 import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
+import {inspect} from "util";
+import styles from "./App"
+
 
 export type TaskType = {
     id: string
@@ -87,7 +90,7 @@ export function Todolist(props: PropsType) {
                 {/*<button onClick={() => {props.removeTodoList(props.id)}}>X</button>*/}
             </h3>
             <AddItemForm addItem={addTask}/>
-            <ul>
+            <ul style={{listStyle: "none", paddingLeft: "0"}}>
                 {tasks}
             </ul>
             <div>
@@ -99,6 +102,7 @@ export function Todolist(props: PropsType) {
                     onClick={onAllClickHandler}>All
                 </Button>
                 <Button
+                    style={{margin: "0 5px"}}
                     size={"small"}
                     color={props.filter === 'active' ? "primary" : "default"}
                     variant={"contained"}

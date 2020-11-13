@@ -6,6 +6,10 @@ import {Button, Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import {inspect} from "util";
 import styles from "./App"
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "./state/store";
+import {TasksStateType} from "./AppWithRedux";
+import {addTasksAC} from "./state/tasks-reducer";
 
 
 export type TaskType = {
@@ -17,10 +21,10 @@ export type TaskType = {
 type PropsType = {
     id: string
     title: string
-    tasks: Array<TaskType>
+
     removeTask: (taskId: string, todoListID: string) => void
     changeFilter: (value: FilterValuesType, todoListID: string) => void
-    addTask: (title: string, todoListID: string) => void
+
     changeTaskStatus: (taskId: string, isDone: boolean, todoListID: string) => void
     filter: FilterValuesType
     removeTodoList: (todoListID: string) => void
@@ -30,9 +34,19 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
 
+    let tasksTodolist = useSelector<AppRootStateType, Array<TaskType>>( state => state.tasks[props.id])
+let dispatch = useDispatch()
+    let tasksForTodolist = tasksTodolist;
+
+    if (props.filter === "active") {
+        tasksForTodolist = tasksTodolist.filter(t => t.isDone === false);
+    }
+    if (props.filter === "completed") {
+        tasksForTodolist = tasksTodolist.filter(t => t.isDone === true);
+    }
 
     const addTask = (title: string) => {
-        props.addTask(title, props.id)
+        dispatch(addTasksAC(title, props.id))
     }
 
     const changeTodoListTitle = (title: string) => {
@@ -45,7 +59,7 @@ export function Todolist(props: PropsType) {
     const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
 
 
-    const tasks = props.tasks.map(t => {
+    const elementsTasks = tasksForTodolist.map(t => {
         const removeTask = () => {
             props.removeTask(t.id, props.id)
         }
@@ -54,7 +68,7 @@ export function Todolist(props: PropsType) {
         }
 
         const changeTaskTitle = (value: string) => {
-            debugger
+
             props.changeTaskTitle(t.id, value, props.id)
         }
         return (
@@ -91,7 +105,7 @@ export function Todolist(props: PropsType) {
             </h3>
             <AddItemForm addItem={addTask}/>
             <ul style={{listStyle: "none", paddingLeft: "0"}}>
-                {tasks}
+                {elementsTasks}
             </ul>
             <div>
                 <Button

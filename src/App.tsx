@@ -160,10 +160,10 @@ function App() {
                         <Todolist
                             id={tl.id}
                              title={tl.title}
-                            tasks={tasksForTodolist}
+
                             removeTask={removeTask}
                              changeFilter={changeFilter}
-                             addTask={addTask}
+
                             changeTaskStatus={changeStatus}
                              filter={tl.filter}
                             removeTodoList={removeTodoList}

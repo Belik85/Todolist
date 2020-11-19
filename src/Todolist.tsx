@@ -35,7 +35,7 @@ type PropsType = {
 export function Todolist(props: PropsType) {
 
     let tasksTodolist = useSelector<AppRootStateType, Array<TaskType>>( state => state.tasks[props.id])
-let dispatch = useDispatch()
+    let dispatch = useDispatch()
     let tasksForTodolist = tasksTodolist;
 
     if (props.filter === "active") {

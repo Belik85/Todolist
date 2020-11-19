@@ -65,13 +65,13 @@ function AppWithRedux() {
 
     function removeTodoList(todoListID: string) {
         dispatch(RemoveTodoListAC(todoListID))
-        dispatch(RemoveTodoListAC(todoListID))
+
     }
 
     function addTodoList(title: string) {
         let action = AddTodoListAC(title)
         dispatch(action)
-        dispatch(action)
+
 
     }
 
@@ -115,10 +115,8 @@ function AppWithRedux() {
                                         <Todolist
                                             id={tl.id}
                                             title={tl.title}
-
                                             removeTask={removeTask}
                                             changeFilter={changeFilter}
-
                                             changeTaskStatus={changeStatus}
                                             filter={tl.filter}
                                             removeTodoList={removeTodoList}

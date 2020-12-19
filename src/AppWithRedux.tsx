@@ -36,7 +36,7 @@ function AppWithRedux() {
 
 
     let todoLists = useSelector<AppRootStateType, Array<TodoListType>> (state => state.todoLists)
-    let tasks = useSelector<AppRootStateType, TasksStateType> (state => state.tasks)
+    let tasks = useSelector<AppRootStateType,  TasksStateType> (state => state.tasks)
 
     let dispatch = useDispatch()
 

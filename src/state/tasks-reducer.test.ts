@@ -15,7 +15,7 @@ let startState: TasksStateType
          "todoListID2": [
              { id: "1", title: "bread", isDone: false },
              { id: "2", title: "milk", isDone: true },
-             { id: "3", title: "tea", isDone: false }
+             { id: "3", title: "beer", isDone: false }
          ]
      };
 

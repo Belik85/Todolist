@@ -9,7 +9,7 @@ let startState: TasksStateType
      startState = {
          "todoListID1": [
              { id: "1", title: "CSS", isDone: false },
-             { id: "2", title: "JS", isDone: true },
+             { id: "2", title: "php", isDone: true },
              { id: "3", title: "React", isDone: false }
          ],
          "todoListID2": [

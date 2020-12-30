@@ -5,11 +5,12 @@ import {AddTodoListAC, RemoveTodoListAC} from "./todolists-reducer";
 
 let startState: TasksStateType
 
+
  beforeEach(() => {
      startState = {
          "todoListID1": [
              { id: "1", title: "CSS", isDone: false },
-             { id: "2", title: "php", isDone: true },
+             { id: "2", title: "GIT", isDone: true },
              { id: "3", title: "React", isDone: false }
          ],
          "todoListID2": [

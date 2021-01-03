@@ -8,18 +8,15 @@ type AddItemFormPropsType = {
 
 }
 
-
 function AddItemForm(props: AddItemFormPropsType) {
+    console.log("AddItemForm called")
 
     const addItem = props.addItem;
 
     let [title, setTitle] = useState("")
     let [error, setError] = useState<string | null>(null)
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setError( null);
-        setTitle(e.currentTarget.value);
-    };
+
 
     const onAddTaskClick = () => {
         if (title.trim()) {
@@ -30,12 +27,18 @@ function AddItemForm(props: AddItemFormPropsType) {
         }
     }
 
-
-
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        if (error !== null) {
+            setError( null);
+        }
+        setTitle(e.currentTarget.value);
+    };
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null);
-        if (e.ctrlKey && e.key === 'Enter') { onAddTaskClick()}
+        if (error !== null) {
+            setError(null);
+        }
+        if (e.ctrlKey && e.key === 'Enter') { onAddTaskClick();}
     }
 
     return (

@@ -8,8 +8,8 @@ type AddItemFormPropsType = {
 
 }
 
-function AddItemForm(props: AddItemFormPropsType) {
-    console.log("AddItemForm called")
+export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
+    // console.log("AddItemForm called")
 
     const addItem = props.addItem;
 
@@ -70,6 +70,6 @@ function AddItemForm(props: AddItemFormPropsType) {
            </div>
        )
 
-};
+})
 
 export default AddItemForm;

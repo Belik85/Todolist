@@ -72,32 +72,51 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
             return {...state, [action.todoListID]: [task, ...state[action.todoListID]]}
         }
 
+        case  'CHANGE-STATUS-TASK': {
+            let todoListTasks = state[action.todoListID]
+            let task = todoListTasks.find(t => t.id === action.taskID);
+            if (task) {
+                task.isDone = action.isDone;
+            }
+            return ({
+                ...state,
+                [action.todoListID]: state[action.todoListID].map(task => task.id === action.taskID ?
+                    {...task, isDone: action.isDone} : task)
+            })
+        }
+
         // case  'CHANGE-STATUS-TASK': {
+        //     return {
+        //         ...state, [action.todoListID]: state[action.todoListID].map(task => {
+        //             if (task.id !== action.taskID) return task
+        //             else return {...task, isDone: action.isDone}
+        //         })
+        //     }
+        // }
+
+        case  'CHANGE-TITLE-TASK': {
+            // let todoListTasks = state[action.todoListID]
+            // let task = todoListTasks.find(t => t.id === action.taskID);
+            // if (task) {
+            //     task.title = action.title;
+            // }
+            return ({
+                ...state,
+                [action.todoListID]: state[action.todoListID].map(task => task.id === action.taskID ?
+                    {...task, title: action.title} : task)
+            })
+        }
+
+        // case  'CHANGE-TITLE-TASK': {
         //     let todoListTasks = state[action.todoListID]
         //     let task = todoListTasks.find(t => t.id === action.taskID);
         //     if (task) {
-        //         task.isDone = action.isDone;
+        //         task.title = action.title;
         //     }
         //     return {...state, [action.todoListID]: todoListTasks}
         // }
 
-        case  'CHANGE-STATUS-TASK': {
-            return {
-                ...state, [action.todoListID]: state[action.todoListID].map(task => {
-                    if (task.id !== action.taskID) return task
-                    else return {...task, isDone: action.isDone}
-                })
-            }
-        }
 
-        case  'CHANGE-TITLE-TASK': {
-            let todoListTasks = state[action.todoListID]
-            let task = todoListTasks.find(t => t.id === action.taskID);
-            if (task) {
-                task.title = action.title;
-            }
-            return {...state, [action.todoListID]: todoListTasks}
-        }
         case  'ADD-TODOLIST': {
             let id = v1()
             return {...state, [action.todoListID]: []}

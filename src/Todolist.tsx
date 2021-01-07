@@ -32,7 +32,8 @@ type PropsType = {
     changeTodoListTitle: (todoListID: string, title: string) => void
 }
 
-export function Todolist(props: PropsType) {
+export const Todolist = React.memo((props: PropsType) => {
+    console.log("Todolist called")
 
     let tasksTodolist = useSelector<AppRootStateType, Array<TaskType>>( state => state.tasks[props.id])
     let dispatch = useDispatch()
@@ -45,6 +46,16 @@ export function Todolist(props: PropsType) {
         tasksForTodolist = tasksTodolist.filter(t => t.isDone === true);
     }
 
+    // let allTodolistTasks = [];
+    //
+    // if (props.filter === "active") {
+    //     allTodolistTasks = tasksForTodolist.filter(t => t.isDone === false);
+    // }
+    // if (props.filter === "completed") {
+    //     allTodolistTasks = tasksForTodolist.filter(t => t.isDone === true);
+    // }
+
+
     const addTask = (title: string) => {
         dispatch(addTasksAC(title, props.id))
     }
@@ -52,7 +63,6 @@ export function Todolist(props: PropsType) {
     const changeTodoListTitle = (title: string) => {
         props.changeTodoListTitle(props.id, title)
     }
-
 
     const onAllClickHandler = () => props.changeFilter("all", props.id);
     const onActiveClickHandler = () => props.changeFilter("active", props.id);
@@ -133,4 +143,4 @@ export function Todolist(props: PropsType) {
             </div>
         </div>
     )
-}
+})

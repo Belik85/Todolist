@@ -1,4 +1,4 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useCallback, useState} from 'react';
 import {FilterValuesType} from './App';
 import AddItemForm from "./AddItemForm";
 import EditableSpan from "./EditableSpan";
@@ -56,17 +56,17 @@ export const Todolist = React.memo((props: PropsType) => {
     // }
 
 
-    const addTask = (title: string) => {
+   const addTask = useCallback((title: string) => {
         dispatch(addTasksAC(title, props.id))
-    }
+    }, [props.id])
 
-    const changeTodoListTitle = (title: string) => {
+    const changeTodoListTitle = useCallback((title: string) => {
         props.changeTodoListTitle(props.id, title)
-    }
+    }, [props.changeTodoListTitle, props.id])
 
-    const onAllClickHandler = () => props.changeFilter("all", props.id);
-    const onActiveClickHandler = () => props.changeFilter("active", props.id);
-    const onCompletedClickHandler = () => props.changeFilter("completed", props.id);
+    const onAllClickHandler = useCallback(() => props.changeFilter("all", props.id), []);
+    const onActiveClickHandler = useCallback(() => props.changeFilter("active", props.id), []);
+    const onCompletedClickHandler = useCallback(() => props.changeFilter("completed", props.id), []);
 
 
     const elementsTasks = tasksForTodolist.map(t => {
@@ -78,9 +78,9 @@ export const Todolist = React.memo((props: PropsType) => {
         }
 
         const changeTaskTitle = (value: string) => {
-
             props.changeTaskTitle(t.id, value, props.id)
-        }
+        };
+
         return (
         <li key={t.id} className={t.isDone ? "is-done" : ""}>
             <Checkbox

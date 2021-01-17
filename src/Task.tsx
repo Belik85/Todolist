@@ -6,7 +6,7 @@ import {TaskType} from "./Todolist";
 import {useDispatch} from "react-redux";
 import {removeTaskAC} from "./state/tasks-reducer";
 
-type TaskPropsType = {
+export type TaskPropsType = {
     //taskID
     //todolistID
     todoListID:string;

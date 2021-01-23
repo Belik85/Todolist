@@ -65,7 +65,6 @@ export const AddItemForm = React.memo((props: AddItemFormPropsType) => {
                    <AddBox/>
 
                </IconButton>
-
                {/*{error && <div className="error-message">{error}</div>}*/}
            </div>
        )

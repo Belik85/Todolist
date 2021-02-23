@@ -13,10 +13,6 @@ export const GetTodolists = () => {
         promise.then((response) => {
             setState(response.data)
         })
-
-        // здесь мы будем делать запрос и ответ закидывать в стейт.
-        // который в виде строки будем отображать в div-ке
-
     }, [])
 
     return <div> {JSON.stringify(state)}</div>

@@ -30,34 +30,39 @@ export type TaskType = {
 }
 
 
-type GetTaskResponse = {
+export type GetTaskResponse = {
     error: string | null
     totalCount: number
     items: TaskType[]
 }
 
-
+export type UpdateTaskType = {
+    title: string
+    description: string
+    status: number
+    priority: number
+    startDate: string
+    deadline: string
+}
 
 
 
 export const taskAPI = {
 
     updateTask(todoListID: string, taskID: string, title: string) {
-        return instance.put<Array<TaskType>>(`/todo-lists/${todoListID}/tasks/${taskID}`, {title})
+        return instance.put<Array<TaskType>>(`/todo-lists/${todoListID}/tasks/${taskID}`, {title});
 
     },
 
-    deleteTask(todoListID: string, taskID: string) {
-        return instance.delete<BaseResponseType>(`todo-lists/${todoListID}/tasks/${taskID}`)
-    },
-
-    createTask(todoListID: string, taskTitle: string) {
-        return instance.post<BaseResponseType>(`todo-lists/${todoListID}/tasks`)
-    },
-
-    getTasks(todoListID: string) {
-        return instance.get<Array<TaskType>>(`todo-lists/${todoListID}/tasks`)
-    },
-
-
+    // createTask(todoListID: string, taskTitle: string) {
+    //     return instance.post<BaseResponseType<TaskType>>(`todo-lists/${todoListID}/tasks`);
+    // },
+    //
+    // getTasks(todoListID: string) {
+    //     return instance.get<Array<GetTaskResponse>>(`todo-lists/${todoListID}/tasks`);
+    // },
+    //
+    // deleteTask(todoListID: string, taskID: string) {
+    //     return instance.delete<BaseResponseType>(`todo-lists/${todoListID}/tasks/${taskID}`)
+    // },
 }

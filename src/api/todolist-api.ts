@@ -1,4 +1,5 @@
 import axios from "axios";
+import {GetTaskResponse, TaskType} from "./task-api";
 
 const settings = {
     baseURL:"https://social-network.samuraijs.com/api/1.1/",
@@ -76,6 +77,23 @@ export const todoListAPI = {
     getTodoList() {
         return instance.get<Array<TodoListType>>(`todo-lists`)
     },
+
+
+    createTask(todoListID: string, taskTitle: string) {
+        return instance.post<BaseResponseType<TaskType>>(`todo-lists/${todoListID}/tasks`);
+    },
+
+    getTasks(todoListID: string) {
+        return instance.get<Array<GetTaskResponse>>(`todo-lists/${todoListID}/tasks`);
+    },
+
+    deleteTask(todoListID: string, taskID: string) {
+        return instance.delete<BaseResponseType>(`todo-lists/${todoListID}/tasks/${taskID}`)
+    },
+
+
+
+
 
 
 }

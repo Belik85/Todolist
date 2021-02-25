@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {todoListAPI} from "../api/todolist-api";
-
+import {taskAPI} from "../api/task-api";
 
 export const GetTasks = () => {
     const [state, setState] = useState<any>(null)
@@ -19,7 +19,23 @@ export const GetTasks = () => {
     return <div> {JSON.stringify(state)}</div>
 }
 
+export const DeleteTask = () => {
+    const [state, setState] = useState<any>(null)
+    useEffect(() => {
+        const todoListID = '7b0a8cad-ee4e-4270-8380-b392beb7a52f';
+        const taskID = '7b0a8cad-ee4e-4270-8380-b392beb7a52f';
+        const promise = todoListAPI.deleteTask(todoListID, taskID)
+        promise.then((response) => {
+            setState(response.data)
+        })
 
+        // здесь мы будем делать запрос и ответ закидывать в стейт.
+        // который в виде строки будем отображать в div-ке
+
+    }, [])
+
+    return <div> {JSON.stringify(state)}</div>
+}
 
 export const CreateTask = () => {
     const [state, setState] = useState<any>(null)

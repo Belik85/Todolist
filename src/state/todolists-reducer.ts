@@ -84,3 +84,10 @@ export const ChangeTitleAC = (todoListID: string, title: string) :ChangeTitleAct
 export const ChangeFilterAC = (todoListID: string, filter: FilterValuesType) :ChangeFilterActionType => {
     return { type: 'CHANGE-TODOLIST-FILTER', id: todoListID, filter: filter }
 }
+
+export const getTodolistAC = (todos: any) => {
+    return {
+        type: "GET-TODOS",
+        todos
+    }
+}

@@ -16,7 +16,7 @@ const instance = axios.create({
 )
 
 
-type TodoListType = {
+export type ServerTodoListType = {
     id: string,
     title: string,
     addedDate: string,
@@ -92,11 +92,11 @@ export type UpdateTaskType = {
 export const todoListAPI = {
 
     getTodoList() {
-        return instance.get<Array<TodoListType>>(`todo-lists`)
+        return instance.get<Array<ServerTodoListType>>(`todo-lists`)
     },
 
     createTodoList(title: string) {
-        return instance.post<BaseResponseType<{item: TodoListType}>>(`todo-lists/${title}`)
+        return instance.post<BaseResponseType<{item: ServerTodoListType}>>(`todo-lists/${title}`)
     },
 
     updateTodoList(todoListID: string, title: string) {

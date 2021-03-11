@@ -37,7 +37,6 @@ function AppWithRedux() {
 
     useEffect(() => {
         todoListAPI.getTodoList().then((res)=>{
-            debugger
             let todos = res.data
             dispatch(getTodolistAC(todos))
         })
@@ -77,8 +76,11 @@ function AppWithRedux() {
     }, [dispatch])
 
     const addTodoList = useCallback((title: string) => {
-        let action = AddTodoListAC(title)
-        dispatch(action)
+        todoListAPI.createTodoList(title).then(res => {
+            let action = AddTodoListAC(res.data.data.item)
+            dispatch(action)
+        })
+
     }, [dispatch])
 
     const changeTodoListTitle = useCallback((todoListID: string, title: string) => {
@@ -134,7 +136,6 @@ function AppWithRedux() {
                                         <Todolist
                                             id={tl.id}
                                             title={tl.title}
-
                                             removeTask={removeTask}
                                             changeFilter={changeFilter}
                                             changeTaskStatus={changeStatus}

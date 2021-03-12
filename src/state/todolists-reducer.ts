@@ -21,6 +21,7 @@ export type RemoveTodoListActionType = {
 export type AddTodoListActionType = {
     type: 'ADD-TODOLIST'
     newTodolist: ServerTodoListType
+
 }
 
 type ChangeTitleActionType = {

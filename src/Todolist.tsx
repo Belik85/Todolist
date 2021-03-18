@@ -71,6 +71,7 @@ export const Todolist: React.FC<PropsType> = React.memo((props: PropsType) => {
     // }
 
     const removeTask = useCallback((taskID: string) => {
+        debugger
         props.removeTask(taskID, props.id)
     }, [props.removeTask, props.id])
 
@@ -87,7 +88,6 @@ export const Todolist: React.FC<PropsType> = React.memo((props: PropsType) => {
     // };
 
     const changeTaskTitle = useCallback((taskID: string, title: string) => {
-        debugger
         props.changeTaskTitle(taskID, title, props.id)
     }, [props.changeTaskTitle, props.id]);
 

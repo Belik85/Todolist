@@ -17,9 +17,9 @@ export type TaskPropsType = {
 }
 
 export const Task: React.FC<TaskPropsType> = React.memo(({task, onChangeHandler, changeTaskTitle, removeTask, todoListID}) => {
+    const  dispatch = useDispatch()
 
-
-    const remove = () =>removeTaskAC(task.id, todoListID)
+    const remove = () => dispatch(removeTaskAC(task.id, todoListID))
     const changeTitle = (title: string) => {
        changeTaskTitle(task.id, title )
     }

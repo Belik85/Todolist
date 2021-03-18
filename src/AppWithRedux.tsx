@@ -9,7 +9,7 @@ import {Menu} from "@material-ui/icons";
 import {
     AddTodoListAC,
     ChangeFilterAC,
-    ChangeTitleAC, getTodolistAC,
+    ChangeTitleAC,
     RemoveTodoListAC,
     todoListsReducer
 } from "./state/todolists-reducer";
@@ -35,12 +35,12 @@ let styles = {padding: "15px"}
 
 function AppWithRedux() {
 
-    useEffect(() => {
-        todoListAPI.getTodoList().then((res)=>{
-            let todos = res.data
-            dispatch(getTodolistAC(todos))
-        })
-    }, [])
+   // useEffect(()=> {
+   //     todoListAPI.getTodoList().then((res)=>{
+   //         let todos = res.data
+   //         dispatch(getTodolistAC(todos))
+   //     })
+   // },[])
 
     let todoLists = useSelector<AppRootStateType, Array<TodoListType>>(state => state.todoLists)
     let tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
@@ -52,9 +52,10 @@ function AppWithRedux() {
     }, [dispatch])
 
     const removeTask = useCallback((taskID: string, todoListID: string) => {
+        debugger
         const action = removeTaskAC(taskID, todoListID);
-
         dispatch(action);
+
     }, [dispatch])
 
     const changeStatus = useCallback((taskID: string, isDone: boolean, todoListID: string) => {
@@ -76,11 +77,8 @@ function AppWithRedux() {
     }, [dispatch])
 
     const addTodoList = useCallback((title: string) => {
-        todoListAPI.createTodoList(title).then(res => {
-            let action = AddTodoListAC(res.data.data.item)
-            dispatch(action)
-        })
-
+        let action = AddTodoListAC(title)
+        dispatch(action)
     }, [dispatch])
 
     const changeTodoListTitle = useCallback((todoListID: string, title: string) => {

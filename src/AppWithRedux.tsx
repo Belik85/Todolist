@@ -41,9 +41,7 @@ function AppWithRedux() {
 
 
 
-
-
-   // useEffect(()=> {
+    // useEffect(()=> {
    //     todoListAPI.getTodoList().then((res)=>{
    //         let todos = res.data
    //         dispatch(getTodolistAC(todos))

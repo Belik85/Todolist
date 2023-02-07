@@ -18,7 +18,11 @@ function AddItemForm(props: addItemFormPropsType) {
         setNewTaskTitle(e.currentTarget.value)
     }
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-        setError(null)
+       // условие для оптимизации рендеринга
+        if (error !== null) {
+           setError(null)
+       }
+        // setError(null)
         if (e.ctrlKey && e.charCode === 13) {
             props.addItem(newTaskTitle)
             // props.addItem(newTaskTitle, props.id)

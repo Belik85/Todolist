@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {TasksStateType, TodolistType} from "../App";
+import {TasksStateType, TodolistType} from "../AppWithRedux";
 import {addTodolistAC, removeTodolistAC, todolistsReducer} from "./todolists-reducer";
 import {useState} from "react";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./tasks-reducer";

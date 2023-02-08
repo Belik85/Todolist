@@ -10,7 +10,7 @@ type addItemFormPropsType = {
     // id: string
 }
 
-function AddItemForm(props: addItemFormPropsType) {
+export const AddItemForm = React.memo ( (props: addItemFormPropsType) => {
     const [newTaskTitle, setNewTaskTitle] = useState('');
     const [error, setError] = useState<string | null>(null);
 
@@ -73,6 +73,6 @@ function AddItemForm(props: addItemFormPropsType) {
         {/*<button onClick={addTask}>+</button>*/}
 
     </div>
-}
+} )
 
 export default AddItemForm

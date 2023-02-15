@@ -69,20 +69,25 @@ function AppWithRedux() {
 
     },[])
 
-    const changeFilter = (value: FilterValuesType, todolistId: string) => {
+    const changeFilter = useCallback((value: FilterValuesType, todolistId: string) => {
         const action = changeTodolistFilterAC( todolistId, value )
         dispatch(action)
-    }
+    },[])
 
-    let removeTodolist = (todolistId: string) => {
+    let removeTodolist = useCallback((todolistId: string) => {
         const action = removeTodolistAC(todolistId)
         dispatch(action)
-    }
+    },[])
 
-    let changeTodolistTitle = (todolistId: string, newTitle: string) => {
+    let changeTodolistTitle = useCallback((todolistId: string, newTitle: string) => {
         const action = changeTodolistTileAC(todolistId, newTitle)
         dispatch(action)
-    }
+    },[])
+
+    // let changeTodolistTitle = (todolistId: string, newTitle: string) => {
+    //     const action = changeTodolistTileAC(todolistId, newTitle)
+    //     dispatch(action)
+    // }
 
 
     return (

@@ -57,7 +57,7 @@ const Todolist = React.memo(function (props: PropsType) {
     const addItemTask = useCallback((title: string) => {
         dispatch(addTaskAC(title, props.id))
         // props.addTask(title, props.id)
-    }, [])
+    }, [dispatch])
 
     // const addTask = (title: string, todolistId: string) => {
     //     dispatch(addTaskAC(title, todolistId))
@@ -154,7 +154,7 @@ const Todolist = React.memo(function (props: PropsType) {
     const onRemoveHandler = useCallback(function (id: string) {
         dispatch(removeTaskAC(id, props.id))
         // props.removeTask(t.id, props.id)
-    }, [])
+    }, [dispatch])
 
     // const onRemoveHandler = () => {
     //     dispatch(removeTaskAC(t.id, props.id));
@@ -166,13 +166,13 @@ const Todolist = React.memo(function (props: PropsType) {
         dispatch(changeTaskStatusAC(id, props.id, newIsDoneValue));
         // props.changeTaskStatus(t.id, newIsDoneValue, props.id)
         // props.changeTaskStatus(t.id, e.currentTarget.checked, props.id)
-    }, [])
+    }, [dispatch])
 
 
     const onChangeTitleHandler = useCallback((id: string, newValue: string) => {
         dispatch(changeTaskTitleAC(id, newValue, props.id));
         // props.changeTaskTitle(t.id, newValue, props.id)
-    }, [])
+    }, [dispatch])
 
     return <div>
         <div>

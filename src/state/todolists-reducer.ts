@@ -2,10 +2,6 @@ import {resolveAny} from "dns";
 import {FilterValuesType, TodolistType} from "../AppWithRedux";
 import {v1} from "uuid";
 
-// type ActionType = {
-//     type: string,
-//     [key: string]: any,
-// }
 
 export type RemoveTodolistActionType = {
     type: 'REMOVE-TODOLIST',
@@ -35,12 +31,12 @@ export type ChangeTodolistFilterActionType = {
 type ActionsTypes = RemoveTodolistActionType | AddTodolistActionType | ChangeTodolistTitleActionType | ChangeTodolistFilterActionType
 
 
-export let todolistId1 = v1();
-export let todolistId2 = v1();
+// export let todolistId1 = v1();
+// export let todolistId2 = v1();
 
 const initialState: Array<TodolistType> = [
-        {id: todolistId1, title: "What to learn", filter: "Completed"},
-        {id: todolistId2, title: "What to Buy", filter: "Active"},
+        // {id: todolistId1, title: "What to learn", filter: "Completed"},
+        // {id: todolistId2, title: "What to Buy", filter: "Active"},
 ]
 
 export const todolistsReducer = (state: Array<TodolistType> = initialState, action: ActionsTypes): Array<TodolistType> => {

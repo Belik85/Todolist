@@ -9,15 +9,15 @@ test('correct task should be deleted from todolist', () => {
 
     const startState: TasksStateType= {
         'todolistId1': [
-            {id: '1', title: 'React', isDone: true},
-            {id: '2', title: 'HTML', isDone: false},
-            {id: '3', title: 'JS', isDone: true},
+            {taskId: '1', title: 'React', isDone: true},
+            {taskId: '2', title: 'HTML', isDone: false},
+            {taskId: '3', title: 'JS', isDone: true},
 
         ],
         'todolistId2': [
-            {id: '1', title: 'Milk', isDone: true},
-            {id: '2', title: 'Beer', isDone: false},
-            {id: '3', title: 'CSS', isDone: false},
+            {taskId: '1', title: 'Milk', isDone: true},
+            {taskId: '2', title: 'Beer', isDone: false},
+            {taskId: '3', title: 'CSS', isDone: false},
 
         ]
     }
@@ -29,7 +29,7 @@ test('correct task should be deleted from todolist', () => {
 
     expect(endState['todolistId1'].length).toBe(3);
     expect(endState['todolistId2'].length).toBe(2);
-    expect(endState['todolistId2'].every(t => t.id != '2')).toBeTruthy();
+    expect(endState['todolistId2'].every(t => t.taskId != '2')).toBeTruthy();
 
     // expect(endState['todolistId2'][0].id).toBe(1);
     // expect(endState['todolistId2'][1].id).toBe(3);
@@ -40,15 +40,15 @@ test('correct task should be added in todolist', () => {
 
     const startState: TasksStateType= {
         'todolistId1': [
-            {id: '1', title: 'React', isDone: true},
-            {id: '2', title: 'HTML', isDone: false},
-            {id: '3', title: 'JS', isDone: true},
+            {taskId: '1', title: 'React', isDone: true},
+            {taskId: '2', title: 'HTML', isDone: false},
+            {taskId: '3', title: 'JS', isDone: true},
 
         ],
         'todolistId2': [
-            {id: '1', title: 'Milk', isDone: true},
-            {id: '2', title: 'Beer', isDone: false},
-            {id: '3', title: 'CSS', isDone: false},
+            {taskId: '1', title: 'Milk', isDone: true},
+            {taskId: '2', title: 'Beer', isDone: false},
+            {taskId: '3', title: 'CSS', isDone: false},
 
         ]
     }
@@ -60,7 +60,7 @@ test('correct task should be added in todolist', () => {
 
     expect(endState['todolistId1'].length).toBe(3);
     expect(endState['todolistId2'].length).toBe(4);
-    expect(endState['todolistId2'][0].id).toBeDefined()
+    expect(endState['todolistId2'][0].taskId).toBeDefined()
     expect(endState['todolistId2'][0].title).toBe('sex');
     expect(endState['todolistId2'][0].isDone).toBe(false);
 
@@ -76,15 +76,15 @@ test('status of spiecified task should be changed', () => {
 
     const startState: TasksStateType= {
         'todolistId1': [
-            {id: '1', title: 'React', isDone: true},
-            {id: '2', title: 'HTML', isDone: true},
-            {id: '3', title: 'JS', isDone: true},
+            {taskId: '1', title: 'React', isDone: true},
+            {taskId: '2', title: 'HTML', isDone: true},
+            {taskId: '3', title: 'JS', isDone: true},
 
         ],
         'todolistId2': [
-            {id: '1', title: 'Milk', isDone: true},
-            {id: '2', title: 'Beer', isDone: true},
-            {id: '3', title: 'CSS', isDone: false},
+            {taskId: '1', title: 'Milk', isDone: true},
+            {taskId: '2', title: 'Beer', isDone: true},
+            {taskId: '3', title: 'CSS', isDone: false},
 
         ]
     }
@@ -105,21 +105,21 @@ test('title of spiecified task should be changed', () => {
 
     const startState: TasksStateType= {
         'todolistId1': [
-            {id: '1', title: 'React', isDone: true},
-            {id: '2', title: 'HTML', isDone: false},
-            {id: '3', title: 'JS', isDone: true},
+            {taskId: '1', title: 'React', isDone: true},
+            {taskId: '2', title: 'HTML', isDone: false},
+            {taskId: '3', title: 'JS', isDone: true},
 
         ],
         'todolistId2': [
-            {id: '1', title: 'Milk', isDone: true},
-            {id: '2', title: 'Beer', isDone: false},
-            {id: '3', title: 'CSS', isDone: false},
+            {taskId: '1', title: 'Milk', isDone: true},
+            {taskId: '2', title: 'Beer', isDone: false},
+            {taskId: '3', title: 'CSS', isDone: false},
 
         ]
     }
 
 
-    const action = changeTaskTitleAC('2','todolistId2', 'Milkiway' );
+    const action = changeTaskTitleAC({taskId: '2', todolistId: 'todolistId2', newTitle: 'Milkiway'});
 
     const endState = tasksReducer(startState, action)
 
@@ -136,15 +136,15 @@ test('new property with new arrayshould be added when new todolist added', () =>
 
     const startState: TasksStateType= {
         'todolistId1': [
-            {id: '1', title: 'React', isDone: true},
-            {id: '2', title: 'HTML', isDone: false},
-            {id: '3', title: 'JS', isDone: true},
+            {taskId: '1', title: 'React', isDone: true},
+            {taskId: '2', title: 'HTML', isDone: false},
+            {taskId: '3', title: 'JS', isDone: true},
 
         ],
         'todolistId2': [
-            {id: '1', title: 'Milk', isDone: true},
-            {id: '2', title: 'Beer', isDone: false},
-            {id: '3', title: 'CSS', isDone: false},
+            {taskId: '1', title: 'Milk', isDone: true},
+            {taskId: '2', title: 'Beer', isDone: false},
+            {taskId: '3', title: 'CSS', isDone: false},
 
         ]
     }
@@ -174,15 +174,15 @@ test('property with todolistId should be deleted', () => {
 
     const startState: TasksStateType= {
         'todolistId1': [
-            {id: '1', title: 'React', isDone: true},
-            {id: '2', title: 'HTML', isDone: false},
-            {id: '3', title: 'JS', isDone: true},
+            {taskId: '1', title: 'React', isDone: true},
+            {taskId: '2', title: 'HTML', isDone: false},
+            {taskId: '3', title: 'JS', isDone: true},
 
         ],
         'todolistId2': [
-            {id: '1', title: 'Milk', isDone: true},
-            {id: '2', title: 'Beer', isDone: false},
-            {id: '3', title: 'CSS', isDone: false},
+            {taskId: '1', title: 'Milk', isDone: true},
+            {taskId: '2', title: 'Beer', isDone: false},
+            {taskId: '3', title: 'CSS', isDone: false},
 
         ]
     }

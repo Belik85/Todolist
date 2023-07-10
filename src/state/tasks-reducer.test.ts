@@ -115,6 +115,7 @@ test('title of spiecified task should be changed', () => {
             {taskId: '2', title: 'Beer', isDone: false},
             {taskId: '3', title: 'CSS', isDone: false},
 
+
         ]
     }
 

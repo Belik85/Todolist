@@ -31,6 +31,8 @@ export type TasksStateType = {
 export type TodolistType = {
     todolistId: string,
     title: string,
+    addedDate: string,
+    order: number,
     filter: FilterValuesType,
 }
 
